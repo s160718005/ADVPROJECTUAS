@@ -10,8 +10,8 @@ interface FoodJournalDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg user: User)
     //suspend ini ada kaitannya dengna corotine aitu bisa di pause dan continue
-    //@Query("Select * from user ORDER BY priority DESC")
-    //suspend fun selectAllTodo():List<Todo>
+    @Query("Select * from user ORDER BY uuid DESC")
+    suspend fun selectAllTodo():List<User>
     //@Query("select * from todoo where uuid= :id AND kolumb = :c")
     @Query("select * from user where uuid= :id")
     suspend fun selectUser(id:Int):User

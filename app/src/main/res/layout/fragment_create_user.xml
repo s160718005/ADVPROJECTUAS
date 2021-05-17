@@ -106,12 +106,14 @@
                         android:id="@+id/radioMale"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:tag="@string/male"
                         android:text="@string/male" />
 
                     <RadioButton
                         android:id="@+id/radioFemale"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:tag="@string/female"
                         android:text="@string/female" />
                 </RadioGroup>
 
@@ -176,18 +178,21 @@
                         android:id="@+id/radioMaintain"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:tag="@string/maintain"
                         android:text="@string/maintain" />
 
                     <RadioButton
                         android:id="@+id/radioGain"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:tag="@string/gain"
                         android:text="@string/gain" />
 
                     <RadioButton
                         android:id="@+id/radioLoss"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:tag="@string/loss"
                         android:text="@string/loss" />
                 </RadioGroup>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -195,7 +200,7 @@
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:id="@+id/buttonStart"
+            android:id="@+id/btnStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

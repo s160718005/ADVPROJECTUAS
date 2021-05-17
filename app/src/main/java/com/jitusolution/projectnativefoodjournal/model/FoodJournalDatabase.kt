@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 @Database(entities = arrayOf(User::class), version = 1)
 abstract class FoodJournalDatabase: RoomDatabase() {
     //isinya semua dao yang kalian punya ini kebutulan cuma 1
-    abstract fun userDao():FoodJournalDao
+    abstract fun foodjournalDao():FoodJournalDao
     companion object{
         @Volatile private var instance: FoodJournalDatabase ?= null
         private  val LOCK = Any()
