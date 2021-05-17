@@ -14,7 +14,11 @@
         android:id="@+id/itemProfile"
         android:name="com.jitusolution.projectnativefoodjournal.view.EditProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_edit_profile" />
+        tools:layout="@layout/fragment_edit_profile" >
+        <argument
+            android:name="uuid"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/itemFood"
         android:name="com.jitusolution.projectnativefoodjournal.view.JournalListFragment"
