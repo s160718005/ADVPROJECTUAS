@@ -15,4 +15,6 @@
     <string name="gain">Gain Weight</string>
     <string name="loss">Loss Weight</string>
     <string name="start">Start The Journey</string>
+    <string name="userprofile">User Profile</string>
+    <string name="updateprofile">Update Profile</string>
 </resources>
