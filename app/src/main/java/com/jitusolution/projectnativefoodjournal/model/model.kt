@@ -7,10 +7,10 @@ import androidx.room.PrimaryKey
 @Entity
 data class User(
     var name: String,
-    var age: String,
+    var age: Int,
     var gender:String,
-    var weight:String,
-    var height:String,
+    var weight:Double,
+    var height:Double,
     var personalgoal:String
 ){
     @PrimaryKey(autoGenerate = true)
