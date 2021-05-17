@@ -32,7 +32,8 @@ class EditProfileFragment : Fragment() , UpdateProfileClickListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel= ViewModelProvider(this).get(UserViewModel::class.java)
-        val uuid= EditProfileFragmentArgs.fromBundle(requireArguments()).uuid
+        //val uuid= EditProfileFragmentArgs.fromBundle(requireArguments()).uuid
+        val uuid =1
         viewModel.fetch(uuid)
         dataBinding.listener=this
         observeViewModel()
