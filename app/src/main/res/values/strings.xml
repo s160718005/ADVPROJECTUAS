@@ -17,4 +17,7 @@
     <string name="start">Start The Journey</string>
     <string name="userprofile">User Profile</string>
     <string name="updateprofile">Update Profile</string>
+    <string name="food">Food</string>
+    <string name="report">Report</string>
+    <string name="profile">Profile</string>
 </resources>
