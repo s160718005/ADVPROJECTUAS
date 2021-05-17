@@ -9,7 +9,11 @@
         android:id="@+id/createUserFragment"
         android:name="com.jitusolution.projectnativefoodjournal.view.CreateUserFragment"
         android:label="Register"
-        tools:layout="@layout/fragment_create_user" />
+        tools:layout="@layout/fragment_create_user" >
+        <action
+            android:id="@+id/actionItemFood"
+            app:destination="@id/itemFood" />
+    </fragment>
     <fragment
         android:id="@+id/itemProfile"
         android:name="com.jitusolution.projectnativefoodjournal.view.EditProfileFragment"

@@ -6,25 +6,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jitusolution.projectnativefoodjournal.R
-
-
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class JournalListFragment : Fragment() {
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_journal_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        bottomNav.visibility=View.VISIBLE
+//        navView.visibility=View.VISIBLE
+
+
     }
+
 
 
 }
