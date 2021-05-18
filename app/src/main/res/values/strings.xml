@@ -20,4 +20,16 @@
     <string name="food">Food</string>
     <string name="report">Report</string>
     <string name="profile">Profile</string>
+    <string name="calorie">Calories</string>
+    <string name="date">Date</string>
+    <string name="logthismeal">Log This Meal</string>
+    <string name="logameal">Log A Meal</string>
+    <string name="dailyenergyintake">Daily Energy Intake</string>
+    <string name="status">Status</string>
+    <string name="low">LOW</string>
+    <string name="nullcalorie">0 Cal</string>
+    <string name="targetcalorie">Target Cal</string>
+    <string name="foodlog">Food Log</string>
+    <string name="foodjournalreport">Food Journal Report</string>
+    <string name="month">Month Year</string>
 </resources>
