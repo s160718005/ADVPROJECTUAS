@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
         navController = Navigation.findNavController(this,R.id.hostFragment)
         NavigationUI.setupActionBarWithNavController(this,navController,drawerLayout)
         NavigationUI.setupWithNavController(navView,navController)
-        bottomNav.visibility= View.GONE
-        navView.visibility=View.GONE
+        //bottomNav.visibility= View.GONE
+        //navView.visibility=View.GONE
         bottomNav.setupWithNavController(navController)
     }
     override fun onSupportNavigateUp(): Boolean {

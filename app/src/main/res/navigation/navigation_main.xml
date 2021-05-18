@@ -13,6 +13,9 @@
         <action
             android:id="@+id/actionItemFood"
             app:destination="@id/itemFood" />
+        <action
+            android:id="@+id/actionItemProfile"
+            app:destination="@id/itemProfile" />
     </fragment>
     <fragment
         android:id="@+id/itemProfile"
@@ -20,17 +23,25 @@
         android:label="Profile"
         tools:layout="@layout/fragment_edit_profile" >
         <argument
-            android:name="uuid"
-            app:argType="integer" />
+            android:name="name"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/itemFood"
         android:name="com.jitusolution.projectnativefoodjournal.view.JournalListFragment"
         android:label="Food Log"
-        tools:layout="@layout/fragment_journal_list" />
+        tools:layout="@layout/fragment_journal_list" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/itemReport"
         android:name="com.jitusolution.projectnativefoodjournal.view.HistoryFragment"
         android:label="Report"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
 </navigation>

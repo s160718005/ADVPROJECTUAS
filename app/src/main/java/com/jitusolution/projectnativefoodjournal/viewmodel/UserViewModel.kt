@@ -14,10 +14,10 @@ import kotlin.coroutines.CoroutineContext
 class UserViewModel (application: Application): AndroidViewModel(application), CoroutineScope {
     private val job= Job()
     val userLD = MutableLiveData<User>()
-    fun fetch(uuid:Int){
+    fun fetch(name: String){
         launch{
             val db = buildDB(getApplication())
-            userLD.value=db.foodjournalDao().selectUser(uuid)
+            userLD.value=db.foodjournalDao().selectUser(name)
         }
     }
     fun addUser(user: User)

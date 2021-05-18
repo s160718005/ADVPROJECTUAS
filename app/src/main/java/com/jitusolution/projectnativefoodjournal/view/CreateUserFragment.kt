@@ -36,7 +36,7 @@ class CreateUserFragment : Fragment() {
             //pemanggilan add to do nya
             viewModel.addUser(user)
             Toast.makeText(it.context,"User Created", Toast.LENGTH_SHORT).show()
-            val action = CreateUserFragmentDirections.actionItemFood()
+            val action = CreateUserFragmentDirections.actionItemProfile(txtName.text.toString())
            Navigation.findNavController(it).navigate(action)
 
             //untuk destroy fragment yang terbuka ini mencari benda lain dalam backstack

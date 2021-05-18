@@ -89,7 +89,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtAge"
-                        android:text="@{Integer.toString(user.age)}"
+                        android:text="@={``+user.age}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -110,7 +110,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtWeight"
-                        android:text="@{Double.toString(user.weight)}"
+                        android:text="@={``+user.weight}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -132,7 +132,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtHeight"
-                        android:text="@{Double.toString(user.height)}"
+                        android:text="@={``+user.height}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
