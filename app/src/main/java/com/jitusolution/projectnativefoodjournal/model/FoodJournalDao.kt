@@ -18,8 +18,8 @@ interface FoodJournalDao {
     @Query("select count(*) from user")
     suspend fun countUser():Int
     //untuk update
-    @Query("update user set name=:name , age=:age, height=:height,weight=:weight where uuid=:uuid")
-    suspend fun update(name:String,age:Int,weight:Double, height:Double,uuid: Int)
+    @Query("update user set name=:name , age=:age, height=:height,weight=:weight,bmr=:bmr,caloriestarget=:target where uuid=:uuid")
+    suspend fun update(name:String,age:Int,weight:Double, height:Double,uuid: Int, bmr:Double, target:Double)
 //    @Query("select caloriestarget from user")
 //    suspend fun selectTarget():Double
 

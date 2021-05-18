@@ -57,7 +57,7 @@ class CreateUserFragment : Fragment() {
 
     fun observeViewModel() {
         viewModel.jumlahLD.observe(viewLifecycleOwner, Observer {
-            if(it > 1)
+            if(it >= 1)
             {
                 //val action = CreateUserFragmentDirections.actionItemReport()
                 findNavController().navigate(R.id.itemFood)

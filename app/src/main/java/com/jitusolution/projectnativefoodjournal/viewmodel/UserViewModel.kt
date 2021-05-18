@@ -40,10 +40,10 @@ class UserViewModel (application: Application): AndroidViewModel(application), C
 
         }
     }
-    fun update(name:String,age:Int,weight:Double, height:Double,uuid: Int) {
+    fun update(name:String,age:Int,weight:Double, height:Double,uuid: Int,bmr:Double, target:Double) {
         launch {
             val db = buildDB(getApplication())
-            db.foodjournalDao().update(name, age, weight,height, uuid)
+            db.foodjournalDao().update(name, age, weight,height, 1, bmr,target)
         }
     }
 //    fun getTarget(){

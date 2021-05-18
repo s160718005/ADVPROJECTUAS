@@ -15,6 +15,7 @@ import com.jitusolution.projectnativefoodjournal.databinding.FragmentEditProfile
 import com.jitusolution.projectnativefoodjournal.model.User
 import com.jitusolution.projectnativefoodjournal.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_create_user.*
 
 
 class EditProfileFragment : Fragment() , UpdateProfileClickListener{
@@ -50,7 +51,10 @@ class EditProfileFragment : Fragment() , UpdateProfileClickListener{
 
     override fun onUpdateProfileClick(v: View, obj: User) {
         Log.d("cobacek",obj.toString())
-        viewModel.update(obj.name,obj.age,obj.weight,obj.height,obj.uuid)
+
+        var bmr: Double = viewModel.hitungBMR(txtWeight.text.toString().toDouble(), txtHeight.text.toString().toDouble(), txtAge.text.toString().toInt(), obj.gender)
+        var target: Double = viewModel.caloriesTarget(bmr, obj.personalgoal)
+        viewModel.update(obj.name,obj.age,obj.weight,obj.height,obj.uuid, bmr,target)
         Toast.makeText(v.context, "User updated", Toast.LENGTH_SHORT).show()
     }
 
