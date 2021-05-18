@@ -14,6 +14,7 @@ import com.jitusolution.projectnativefoodjournal.R
 import com.jitusolution.projectnativefoodjournal.databinding.FragmentEditProfileBinding
 import com.jitusolution.projectnativefoodjournal.model.User
 import com.jitusolution.projectnativefoodjournal.viewmodel.UserViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class EditProfileFragment : Fragment() , UpdateProfileClickListener{
@@ -25,6 +26,7 @@ class EditProfileFragment : Fragment() , UpdateProfileClickListener{
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        //bottomNav.findViewById<>()
         dataBinding= DataBindingUtil.inflate<FragmentEditProfileBinding>(inflater,R.layout.fragment_edit_profile,container,false)
         return dataBinding.root
     }
