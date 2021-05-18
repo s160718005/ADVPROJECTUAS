@@ -13,8 +13,8 @@ interface FoodJournalDao {
     @Query("Select * from user ORDER BY uuid DESC")
     suspend fun selectAllTodo():List<User>
     //@Query("select * from todoo where uuid= :id AND kolumb = :c")
-    @Query("select * from user where name= :name")
-    suspend fun selectUser(name:String):User
+    @Query("select * from user where uuid = 1")
+    suspend fun selectUser():User
     @Query("select count(*) from user")
     suspend fun countUser():Int
     //untuk update

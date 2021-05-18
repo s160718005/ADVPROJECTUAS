@@ -16,10 +16,10 @@ class UserViewModel (application: Application): AndroidViewModel(application), C
     val userLD = MutableLiveData<User>()
     val targetLD = MutableLiveData<Double>()
     val jumlahLD = MutableLiveData<Int>()
-    fun fetch(name: String){
+    fun fetch(){
         launch{
             val db = buildDB(getApplication())
-            userLD.value=db.foodjournalDao().selectUser(name)
+            userLD.value=db.foodjournalDao().selectUser()
         }
     }
     fun countUser(){
