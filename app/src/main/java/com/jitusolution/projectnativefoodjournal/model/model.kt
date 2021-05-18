@@ -18,8 +18,14 @@ data class User(
         @ColumnInfo(name="height")
     var height:Double,
         @ColumnInfo(name="personalgoal")
-    var personalgoal:String
+    var personalgoal:String,
+        @ColumnInfo(name="bmr")
+    var bmr:Double,
+        @ColumnInfo(name="caloriestarget")
+    var target:Double
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int=0
+
+
 }

@@ -32,10 +32,12 @@ class CreateUserFragment : Fragment() {
         btnStart.setOnClickListener {
             var radioGender= view.findViewById<RadioButton>(radioGroupGender.checkedRadioButtonId)
             var radioGoal = view.findViewById<RadioButton>(radioGroupGoal.checkedRadioButtonId)
-            var user = User(txtName.text.toString(), txtAge.text.toString().toInt(),radioGender.tag.toString(),txtWeight.text.toString().toDouble(),txtHeight.text.toString().toDouble(),radioGoal.tag.toString())
+            var bmr:Double = viewModel.hitungBMR(txtWeight.text.toString().toDouble(),txtHeight.text.toString().toDouble(),txtAge.text.toString().toInt(),radioGender.tag.toString())
+            var target:Double = viewModel.caloriesTarget(bmr,radioGoal.tag.toString())
+            var user = User(txtName.text.toString(), txtAge.text.toString().toInt(),radioGender.tag.toString(),txtWeight.text.toString().toDouble(),txtHeight.text.toString().toDouble(),radioGoal.tag.toString(),bmr,target)
             //pemanggilan add to do nya
             viewModel.addUser(user)
-            Toast.makeText(it.context,"User Created", Toast.LENGTH_SHORT).show()
+            Toast.makeText(it.context,"User Created target = "+target.toString(), Toast.LENGTH_SHORT).show()
             val action = CreateUserFragmentDirections.actionItemProfile(txtName.text.toString())
            Navigation.findNavController(it).navigate(action)
 
