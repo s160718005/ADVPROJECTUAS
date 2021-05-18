@@ -22,7 +22,8 @@ data class User(
         @ColumnInfo(name="bmr")
     var bmr:Double,
         @ColumnInfo(name="caloriestarget")
-    var target:Double
+    var target:Double,
+
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid:Int=0

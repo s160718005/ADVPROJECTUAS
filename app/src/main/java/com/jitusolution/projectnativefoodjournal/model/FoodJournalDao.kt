@@ -18,6 +18,9 @@ interface FoodJournalDao {
     //untuk update
     @Query("update user set name=:name , age=:age, height=:height,weight=:weight where uuid=:uuid")
     suspend fun update(name:String,age:Int,weight:Double, height:Double,uuid: Int)
+//    @Query("select caloriestarget from user")
+//    suspend fun selectTarget():Double
+
 //    @Query("Select * from todo where is_done=0 ORDER BY priority DESC")
 //    suspend fun selectAllTodoIsDone():List<Todo>
 //    @Query("update todo set is_done=1 where uuid= :uuid")

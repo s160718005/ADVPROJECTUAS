@@ -48,5 +48,9 @@
         android:id="@+id/createLogFragment"
         android:name="com.jitusolution.projectnativefoodjournal.view.CreateLogFragment"
         android:label="fragment_create_log"
-        tools:layout="@layout/fragment_create_log" />
+        tools:layout="@layout/fragment_create_log" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
 </navigation>

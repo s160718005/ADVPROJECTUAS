@@ -14,6 +14,8 @@ import kotlin.coroutines.CoroutineContext
 class UserViewModel (application: Application): AndroidViewModel(application), CoroutineScope {
     private val job= Job()
     val userLD = MutableLiveData<User>()
+    val targetLD = MutableLiveData<Double>()
+
     fun fetch(name: String){
         launch{
             val db = buildDB(getApplication())
@@ -38,6 +40,12 @@ class UserViewModel (application: Application): AndroidViewModel(application), C
             db.foodjournalDao().update(name, age, weight,height, uuid)
         }
     }
+//    fun getTarget(){
+//        launch {
+//            val db = buildDB(getApplication())
+//            targetLD.value =db.foodjournalDao().selectTarget()
+//        }
+//    }
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
 
