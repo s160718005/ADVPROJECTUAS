@@ -70,9 +70,10 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtName"
-                        android:text="@={user.name}"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:text="@={user.name}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -89,9 +90,10 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtAge"
-                        android:text="@={``+user.age}"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:text="@={``+user.age}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -110,9 +112,10 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtWeight"
-                        android:text="@={``+user.weight}"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:text="@={``+user.weight}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -132,9 +135,10 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txtHeight"
-                        android:text="@={``+user.height}"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:text="@={``+user.height}" />
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
