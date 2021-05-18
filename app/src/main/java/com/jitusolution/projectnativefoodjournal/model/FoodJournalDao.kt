@@ -15,6 +15,8 @@ interface FoodJournalDao {
     //@Query("select * from todoo where uuid= :id AND kolumb = :c")
     @Query("select * from user where name= :name")
     suspend fun selectUser(name:String):User
+    @Query("select count(*) from user")
+    suspend fun countUser():Int
     //untuk update
     @Query("update user set name=:name , age=:age, height=:height,weight=:weight where uuid=:uuid")
     suspend fun update(name:String,age:Int,weight:Double, height:Double,uuid: Int)
