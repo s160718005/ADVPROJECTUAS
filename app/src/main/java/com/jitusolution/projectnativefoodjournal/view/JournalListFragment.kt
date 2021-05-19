@@ -16,6 +16,8 @@ import com.jitusolution.projectnativefoodjournal.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_create_log.*
 import kotlinx.android.synthetic.main.fragment_journal_list.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 class JournalListFragment : Fragment() {
@@ -51,6 +53,9 @@ class JournalListFragment : Fragment() {
             progressBar.max = it.target.toInt()
             progressBar.progress= it.target.toInt()
 
+            val date = LocalDateTime.now()
+            var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+            txtDateJournal.text = formatter.format(date)
 
         })
 
