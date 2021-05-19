@@ -6,6 +6,12 @@
         <variable
             name="user"
             type="com.jitusolution.projectnativefoodjournal.model.User" />
+        <variable
+            name="fablistener"
+            type="com.jitusolution.projectnativefoodjournal.view.FabLogClickListener" />
+        <variable
+            name="util"
+            type="com.jitusolution.projectnativefoodjournal.util.UtilKt" />
 
     </data>
 <FrameLayout
@@ -34,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@={user.gender}"
+            android:text="@{user.gender}"
             android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -45,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:shadowColor="#FFFFFF"
-            android:text="@={user.age+``}"
+            android:text="@{user.age+` Years Old`}"
             android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtGenderJournal" />
@@ -55,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@={user.name}"
+            android:text="@{user.name}"
             android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtAgeJournal" />
@@ -104,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
-                    android:text="@string/date"
+                    android:text="@{util.getDateFormmatted}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -141,6 +147,8 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="296dp"
                     android:layout_height="18dp"
+                    android:max="@{user.target}"
+                    android:progress="@{user.target}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtStatusToday" />
@@ -204,6 +212,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="64dp"
             android:clickable="true"
+            android:onClick="@{(view)->fablistener.onFabLogClick(view)}"
             android:src="@android:drawable/ic_menu_add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

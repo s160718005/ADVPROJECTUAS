@@ -68,8 +68,8 @@ class CreateUserFragment : Fragment(),StartJourneyClickListener,RadioGenderClick
         {
             //var radioGender = v.findViewById<RadioButton>(radioGroupGender.checkedRadioButtonId)
             //var radioGoal = v.findViewById<RadioButton>(radioGroupGoal.checkedRadioButtonId)
-            var bmr: Double = viewModel.hitungBMR(txtWeight.text.toString().toDouble(), txtHeight.text.toString().toDouble(), txtAge.text.toString().toInt(), genderUser)
-            var target: Double = viewModel.caloriesTarget(bmr, goal)
+            var bmr: Int = viewModel.hitungBMR(txtWeight.text.toString().toDouble(), txtHeight.text.toString().toDouble(), txtAge.text.toString().toInt(), genderUser)
+            var target: Int = viewModel.caloriesTarget(bmr, goal)
             var user = User(txtName.text.toString(), txtAge.text.toString().toInt(), genderUser, txtWeight.text.toString().toDouble(), txtHeight.text.toString().toDouble(), goal, bmr, target)
             viewModel.addUser(user)
             Toast.makeText(v.context, "User Created target = " + target.toString(), Toast.LENGTH_SHORT).show()

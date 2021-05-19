@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.jitusolution.projectnativefoodjournal.R
 import com.jitusolution.projectnativefoodjournal.databinding.FragmentEditProfileBinding
 import com.jitusolution.projectnativefoodjournal.databinding.FragmentJournalListBinding
@@ -20,7 +21,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
-class JournalListFragment : Fragment() {
+class JournalListFragment : Fragment(),FabLogClickListener {
    // private lateinit var viewModel: UserViewModel
     private lateinit var viewModel:UserViewModel
     private lateinit var dataBinding: FragmentJournalListBinding
@@ -40,27 +41,32 @@ class JournalListFragment : Fragment() {
         viewModel= ViewModelProvider(this).get(UserViewModel::class.java)
         viewModel.fetch()
 
+        dataBinding.fablistener=this
 //    viewModel.getTarget()
      observeViewModel()
 
     }
     fun observeViewModel(){
         viewModel.userLD.observe(viewLifecycleOwner, Observer {
-            txtAgeJournal.text =it.age.toString() +" Years Old"
-            txtNameJournal.text=it.name.toString()
-            txtGenderJournal.text=it.gender.toString()
-            txtTargetCalorie.text=it.target.toString() +" Cal"
-            progressBar.max = it.target.toInt()
-            progressBar.progress= it.target.toInt()
+            dataBinding.user=it
+            //txtAgeJournal.text =it.age.toString() +" Years Old"
+            //txtNameJournal.text=it.name.toString()
+            //txtGenderJournal.text=it.gender.toString()
+            //txtTargetCalorie.text=it.target.toString() +" Cal"
+            //progressBar.max = it.target
+            //progressBar.progress= it.target
 
-            val date = LocalDateTime.now()
-            var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-            txtDateJournal.text = formatter.format(date)
+//            val date = LocalDateTime.now()
+//            var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+//            txtDateJournal.text = formatter.format(date)
 
         })
 
     }
 
+    override fun onFabLogClick(v: View) {
+        findNavController().navigate(R.id.createLogFragment)
+    }
 
 
 }

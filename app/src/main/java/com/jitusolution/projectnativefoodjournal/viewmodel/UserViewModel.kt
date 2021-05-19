@@ -40,7 +40,7 @@ class UserViewModel (application: Application): AndroidViewModel(application), C
 
         }
     }
-    fun update(name:String,age:Int,weight:Double, height:Double,uuid: Int,bmr:Double, target:Double) {
+    fun update(name:String,age:Int,weight:Double, height:Double,uuid: Int,bmr:Int, target:Int) {
         launch {
             val db = buildDB(getApplication())
             db.foodjournalDao().update(name, age, weight,height, 1, bmr,target)
@@ -55,9 +55,9 @@ class UserViewModel (application: Application): AndroidViewModel(application), C
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.Main
 
-    fun hitungBMR(weight:Double, height:Double, age:Int,sex:String):Double
+    fun hitungBMR(weight:Double, height:Double, age:Int,sex:String):Int
     {
-        var bmr:Double = 0.0;
+        var bmr:Int = 0;
         /*
         For
         BMR = 13,397W + 4,799H - 5,677A + 88,362
@@ -66,29 +66,29 @@ class UserViewModel (application: Application): AndroidViewModel(application), C
     */
         if(sex == "Male")
         {
-            bmr = (13.397 * weight)+ (4.799 * height)-(5.677 * age)+ 88.362
+            bmr = ((13.397 * weight)+ (4.799 * height)-(5.677 * age)+ 88.362).toInt()
         }
         else
         {
-            bmr = (9.247 * weight)+ (3.098 * height)-(4.330 * age)+ 447.593
+            bmr = ((9.247 * weight)+ (3.098 * height)-(4.330 * age)+ 447.593).toInt()
         }
         return bmr
     }
-    fun caloriesTarget(bmr:Double, type:String):Double
+    fun caloriesTarget(bmr:Int, type:String):Int
     {
-        var target:Double = 0.0;
+        var target:Int = 0;
         if (type == "Maintain Weight")
         {
             target = bmr
         }
         else if(type == "Gain Weight")
         {
-            target = bmr+ (bmr*0.15)
+            target = (Math.ceil(bmr + (bmr*0.15))).toInt()
         }
         else if(type == "Loss Weight")
         {
-            target = bmr - (bmr*0.15)
+            target = (Math.ceil(bmr - (bmr*0.15))).toInt()
         }
-        return Math.ceil(target)
+        return target
     }
 }

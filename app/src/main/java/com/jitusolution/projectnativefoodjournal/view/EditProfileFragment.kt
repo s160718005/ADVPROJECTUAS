@@ -61,8 +61,8 @@ class EditProfileFragment : Fragment() , UpdateProfileClickListener{
         }
         else {
             Log.d("cobacek", obj.toString())
-            var bmr: Double = viewModel.hitungBMR(txtWeight1.text.toString().toDouble(), txtHeight1.text.toString().toDouble(), txtAge1.text.toString().toInt(), obj.gender)
-            var target: Double = viewModel.caloriesTarget(bmr, obj.personalgoal)
+            var bmr: Int = viewModel.hitungBMR(txtWeight1.text.toString().toDouble(), txtHeight1.text.toString().toDouble(), txtAge1.text.toString().toInt(), obj.gender)
+            var target: Int = viewModel.caloriesTarget(bmr, obj.personalgoal)
             viewModel.update(obj.name, obj.age, obj.weight, obj.height, obj.uuid, bmr, target)
             Toast.makeText(v.context, "User updated", Toast.LENGTH_SHORT).show()
         }

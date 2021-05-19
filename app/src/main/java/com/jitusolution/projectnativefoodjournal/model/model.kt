@@ -20,9 +20,9 @@ data class User(
         @ColumnInfo(name="personalgoal")
     var personalgoal:String,
         @ColumnInfo(name="bmr")
-    var bmr:Double,
+    var bmr:Int,
         @ColumnInfo(name="caloriestarget")
-    var target:Double,
+    var target:Int,
 
 ){
     @PrimaryKey(autoGenerate = true)

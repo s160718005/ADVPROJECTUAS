@@ -16,3 +16,6 @@ interface RadioGenderClickListener{
 interface RadioGoalClickListener{
     fun onRadioGoalClick(v: View)
 }
+interface FabLogClickListener{
+    fun onFabLogClick(v:View)
+}
