@@ -39,17 +39,25 @@ class CreateUserFragment : Fragment() {
         //txtName.setText(jumlahUser)
 
         btnStart.setOnClickListener {
-            var radioGender = view.findViewById<RadioButton>(radioGroupGender.checkedRadioButtonId)
-            var radioGoal = view.findViewById<RadioButton>(radioGroupGoal.checkedRadioButtonId)
-            var bmr: Double = viewModel.hitungBMR(txtWeight.text.toString().toDouble(), txtHeight.text.toString().toDouble(), txtAge.text.toString().toInt(), radioGender.tag.toString())
-            var target: Double = viewModel.caloriesTarget(bmr, radioGoal.tag.toString())
-            var user = User(txtName.text.toString(), txtAge.text.toString().toInt(), radioGender.tag.toString(), txtWeight.text.toString().toDouble(), txtHeight.text.toString().toDouble(), radioGoal.tag.toString(), bmr, target)
-            //pemanggilan add to do nya
-            viewModel.addUser(user)
-            Toast.makeText(it.context, "User Created target = " + target.toString(), Toast.LENGTH_SHORT).show()
-            //val action = CreateUserFragmentDirections.actionItemFood(txtName.text.toString())
-            //Navigation.findNavController(it).navigate(action)
-            findNavController().navigate(R.id.itemFood)
+            if(txtName.text.toString().isNullOrBlank() || txtAge.text.toString().isNullOrBlank() || txtHeight.text.toString().isNullOrBlank() || txtWeight.text.toString().isNullOrBlank())
+            {
+                Toast.makeText(it.context, "Input tidak boleh kosong", Toast.LENGTH_SHORT).show()
+            }
+            else
+            {
+                var radioGender = view.findViewById<RadioButton>(radioGroupGender.checkedRadioButtonId)
+                var radioGoal = view.findViewById<RadioButton>(radioGroupGoal.checkedRadioButtonId)
+                var bmr: Double = viewModel.hitungBMR(txtWeight.text.toString().toDouble(), txtHeight.text.toString().toDouble(), txtAge.text.toString().toInt(), radioGender.tag.toString())
+                var target: Double = viewModel.caloriesTarget(bmr, radioGoal.tag.toString())
+                var user = User(txtName.text.toString(), txtAge.text.toString().toInt(), radioGender.tag.toString(), txtWeight.text.toString().toDouble(), txtHeight.text.toString().toDouble(), radioGoal.tag.toString(), bmr, target)
+                //pemanggilan add to do nya
+                viewModel.addUser(user)
+                Toast.makeText(it.context, "User Created target = " + target.toString(), Toast.LENGTH_SHORT).show()
+                //val action = CreateUserFragmentDirections.actionItemFood(txtName.text.toString())
+                //Navigation.findNavController(it).navigate(action)
+                findNavController().navigate(R.id.itemFood)
+            }
+
 
             //untuk destroy fragment yang terbuka ini mencari benda lain dalam backstack
         }

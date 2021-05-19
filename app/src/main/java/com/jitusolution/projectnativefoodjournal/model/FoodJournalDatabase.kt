@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = arrayOf(User::class), version = 1)
+@Database(entities = arrayOf(User::class,Day::class), version = 1)
 abstract class FoodJournalDatabase: RoomDatabase() {
     //isinya semua dao yang kalian punya ini kebutulan cuma 1
     abstract fun foodjournalDao():FoodJournalDao

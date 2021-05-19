@@ -16,6 +16,11 @@ import com.jitusolution.projectnativefoodjournal.model.User
 import com.jitusolution.projectnativefoodjournal.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_create_user.*
+import kotlinx.android.synthetic.main.fragment_create_user.txtAge
+import kotlinx.android.synthetic.main.fragment_create_user.txtHeight
+import kotlinx.android.synthetic.main.fragment_create_user.txtName
+import kotlinx.android.synthetic.main.fragment_create_user.txtWeight
+import kotlinx.android.synthetic.main.fragment_edit_profile.*
 
 
 class EditProfileFragment : Fragment() , UpdateProfileClickListener{
@@ -50,12 +55,17 @@ class EditProfileFragment : Fragment() , UpdateProfileClickListener{
     }
 
     override fun onUpdateProfileClick(v: View, obj: User) {
-        Log.d("cobacek",obj.toString())
-
-        var bmr: Double = viewModel.hitungBMR(txtWeight.text.toString().toDouble(), txtHeight.text.toString().toDouble(), txtAge.text.toString().toInt(), obj.gender)
-        var target: Double = viewModel.caloriesTarget(bmr, obj.personalgoal)
-        viewModel.update(obj.name,obj.age,obj.weight,obj.height,obj.uuid, bmr,target)
-        Toast.makeText(v.context, "User updated", Toast.LENGTH_SHORT).show()
+        if(txtName1.text.toString().isNullOrBlank() || txtAge1.text.toString().isNullOrBlank() || txtWeight1.text.toString().isNullOrBlank() || txtHeight1.text.toString().isNullOrBlank())
+        {
+            Toast.makeText(v.context, "Input tidak boleh kosong", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            Log.d("cobacek", obj.toString())
+            var bmr: Double = viewModel.hitungBMR(txtWeight.text.toString().toDouble(), txtHeight.text.toString().toDouble(), txtAge.text.toString().toInt(), obj.gender)
+            var target: Double = viewModel.caloriesTarget(bmr, obj.personalgoal)
+            viewModel.update(obj.name, obj.age, obj.weight, obj.height, obj.uuid, bmr, target)
+            Toast.makeText(v.context, "User updated", Toast.LENGTH_SHORT).show()
+        }
     }
 
 
