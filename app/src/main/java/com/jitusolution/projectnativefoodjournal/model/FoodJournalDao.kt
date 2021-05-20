@@ -31,6 +31,8 @@ interface FoodJournalDao {
             suspend fun selectTotalCal(tanggal:String):Int
     @Query("SELECT sisacalori FROM day WHERE tanggal =:tanggal ORDER BY uuidday DESC LIMIT 1 ")
     suspend fun selectSisaCal(tanggal:String):Int
+    @Query("SELECT status FROM day WHERE tanggal =:tanggal ORDER BY uuidday DESC LIMIT 1 ")
+    suspend fun selectStatus(tanggal:String):String
 
     @Query("update day set totalkalori= (:totalkalori+:kaloriMakanan) where uuidday=:uuid")
     suspend fun updateDaily(totalkalori:Int,kaloriMakanan:Int,uuid:Int)

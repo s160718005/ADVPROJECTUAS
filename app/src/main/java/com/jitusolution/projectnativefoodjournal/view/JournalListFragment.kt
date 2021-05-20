@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.jitusolution.projectnativefoodjournal.R
 import com.jitusolution.projectnativefoodjournal.databinding.FragmentEditProfileBinding
 import com.jitusolution.projectnativefoodjournal.databinding.FragmentJournalListBinding
+import com.jitusolution.projectnativefoodjournal.viewmodel.DayViewModel
 import com.jitusolution.projectnativefoodjournal.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_create_log.*
@@ -24,6 +25,8 @@ import java.time.format.DateTimeFormatter
 class JournalListFragment : Fragment(),FabLogClickListener {
    // private lateinit var viewModel: UserViewModel
     private lateinit var viewModel:UserViewModel
+    private lateinit var viewModelDay: DayViewModel
+
     private lateinit var dataBinding: FragmentJournalListBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,14 +42,24 @@ class JournalListFragment : Fragment(),FabLogClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel= ViewModelProvider(this).get(UserViewModel::class.java)
+        viewModelDay= ViewModelProvider(this).get(DayViewModel::class.java)
+
         viewModel.fetch()
+        viewModelDay.fetch()
 
         dataBinding.fablistener=this
+
 //    viewModel.getTarget()
      observeViewModel()
 
     }
     fun observeViewModel(){
+        viewModelDay.totalCalLD.observe(viewLifecycleOwner, Observer {
+            dataBinding.total=it
+        })
+        viewModelDay.statusLD.observe(viewLifecycleOwner, Observer {
+            dataBinding.status=it
+        })
         viewModel.userLD.observe(viewLifecycleOwner, Observer {
             dataBinding.user=it
             //txtAgeJournal.text =it.age.toString() +" Years Old"

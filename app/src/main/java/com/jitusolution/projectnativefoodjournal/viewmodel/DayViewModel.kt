@@ -16,9 +16,10 @@ import kotlin.coroutines.CoroutineContext
 class DayViewModel (application: Application): AndroidViewModel(application), CoroutineScope {
     private val job= Job()
     val userLD = MutableLiveData<User>()
-
+val totalCalLD = MutableLiveData<Int>()
     val dayLD = MutableLiveData<List<Day>>()
     var sisaLD = MutableLiveData<Int>()
+    val statusLD = MutableLiveData<String>()
     fun fetch(){
         launch{
             val db = buildDB(getApplication())
@@ -26,11 +27,31 @@ class DayViewModel (application: Application): AndroidViewModel(application), Co
             if(db.foodjournalDao().selectSisaCal(getDateFormmatted())==null)
             {
                 sisaLD.value = db.foodjournalDao().selectUser().target
+
             }
             else
             {
                 sisaLD.value=db.foodjournalDao().selectSisaCal(getDateFormmatted())
             }
+            if(db.foodjournalDao().selectTotalCal(getDateFormmatted())==null)
+            {
+                totalCalLD.value = 0;
+
+            }
+            else
+            {
+                totalCalLD.value =db.foodjournalDao().selectTotalCal(getDateFormmatted())
+            }
+            if(db.foodjournalDao().selectStatus(getDateFormmatted())==null)
+            {
+                statusLD.value = "LOW";
+            }
+            else
+            {
+                statusLD.value =db.foodjournalDao().selectStatus(getDateFormmatted())
+            }
+
+
 
         }
     }
@@ -48,9 +69,11 @@ class DayViewModel (application: Application): AndroidViewModel(application), Co
             if (db.foodjournalDao().selectTotalCal(getDateFormmatted())==null)
             {
                 total = 0;
+
             }
             else{
                 total = db.foodjournalDao().selectTotalCal(getDateFormmatted())
+
             }
             day.totalkalori = total+day.kalorimakanan
             var status = "low"
@@ -69,6 +92,10 @@ class DayViewModel (application: Application): AndroidViewModel(application), Co
             }
             day.status = status
             day.sisa = day.target - day.totalkalori
+            if(day.sisa<0)
+            {
+                day.sisa =0;
+            }
             db.foodjournalDao().insertDay(day)
 
         }
