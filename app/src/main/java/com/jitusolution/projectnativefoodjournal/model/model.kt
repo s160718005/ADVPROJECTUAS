@@ -43,7 +43,9 @@ data class Day(
         @ColumnInfo(name="caloriestarget")
         var target:Int,
         @ColumnInfo(name="status")
-        var status: String
+        var status: String,
+        @ColumnInfo(name="sisacalori")
+        var sisa:Int
 
         ){
     @PrimaryKey(autoGenerate = true)

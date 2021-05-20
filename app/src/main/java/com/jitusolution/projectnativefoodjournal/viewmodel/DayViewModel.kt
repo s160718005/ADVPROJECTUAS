@@ -18,14 +18,18 @@ class DayViewModel (application: Application): AndroidViewModel(application), Co
     val userLD = MutableLiveData<User>()
 
     val dayLD = MutableLiveData<List<Day>>()
-    var totalCalLD = MutableLiveData<Int>()
+    var sisaLD = MutableLiveData<Int>()
     fun fetch(){
         launch{
             val db = buildDB(getApplication())
             dayLD.value=db.foodjournalDao().selectDay(getDateFormmatted())
-            if (db.foodjournalDao().selectTotalCal(getDateFormmatted())!=null)
+            if(db.foodjournalDao().selectSisaCal(getDateFormmatted())==null)
             {
-                totalCalLD.value = db.foodjournalDao().selectTotalCal(getDateFormmatted())
+                sisaLD.value = db.foodjournalDao().selectUser().target
+            }
+            else
+            {
+                sisaLD.value=db.foodjournalDao().selectSisaCal(getDateFormmatted())
             }
 
         }
@@ -64,6 +68,7 @@ class DayViewModel (application: Application): AndroidViewModel(application), Co
                 status = "EXCEED"
             }
             day.status = status
+            day.sisa = day.target - day.totalkalori
             db.foodjournalDao().insertDay(day)
 
         }

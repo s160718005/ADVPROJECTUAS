@@ -6,6 +6,9 @@
     <variable
         name="day"
         type="com.jitusolution.projectnativefoodjournal.model.Day" />
+    <variable
+        name="sisa"
+        type="Integer" />
 <variable
     name="cal"
     type="com.jitusolution.projectnativefoodjournal.viewmodel.UserViewModel" />
@@ -51,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/calorie"
+            android:text="@{ sisa+` Cal Remaining`}"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"

@@ -55,7 +55,7 @@ class CreateLogFragment : Fragment(),LogThisMealClickListener {
         var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
         txtDate.text = formatter.format(date)
 dataBinding.logmeallistener = this
-        dataBinding.day = Day("","",0,0,0,0,"")
+        dataBinding.day = Day("","",0,0,0,0,"",target)
         viewModel.fetch()
         viewModelDay.fetch()
         observeViewModel()
@@ -63,15 +63,16 @@ dataBinding.logmeallistener = this
 //        txtCal.text =viewModel.getTarget().toString()
     }
     fun observeViewModel() {
+        viewModelDay.sisaLD.observe(viewLifecycleOwner, Observer {
+            dataBinding.sisa = it
+
+        })
         viewModel.userLD.observe(viewLifecycleOwner, Observer {
             bmr = it.bmr
             target = it.target
 
         })
-        viewModelDay.totalCalLD.observe(viewLifecycleOwner, Observer {
-          totalCal = it
 
-        })
 
     }
     override fun onLogThisMealClick(v: View,obj:Day) {
@@ -81,9 +82,7 @@ dataBinding.logmeallistener = this
         }
         else
         {
-
-            Log.d("total",totalCal.toString())
-            var day = Day(getDateFormmatted(),obj.namamakanan,obj.kalorimakanan.toString().toInt(),0,bmr,target,"")
+            var day = Day(getDateFormmatted(),obj.namamakanan,obj.kalorimakanan.toString().toInt(),0,bmr,target,"",0)
 
             viewModelDay.addDay(day)
             Toast.makeText(v.context, "Makanan sudah tersimpan , Total kalori hari ini =" + totalCal.toString(), Toast.LENGTH_SHORT).show()
