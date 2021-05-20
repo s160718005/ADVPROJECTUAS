@@ -39,9 +39,9 @@ data class Day(
         @ColumnInfo(name="totalkalori")
         var totalkalori:Int,
         @ColumnInfo(name="bmr")
-        var bmr:Double,
+        var bmr:Int,
         @ColumnInfo(name="caloriestarget")
-        var target:Double,
+        var target:Int,
         @ColumnInfo(name="status")
         var status: String
 
