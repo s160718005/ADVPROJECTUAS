@@ -20,6 +20,18 @@ interface FoodJournalDao {
     //untuk update
     @Query("update user set name=:name , age=:age, height=:height,weight=:weight,bmr=:bmr,caloriestarget=:target where uuid=:uuid")
     suspend fun update(name:String,age:Int,weight:Double, height:Double,uuid: Int, bmr:Int, target:Int)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertDay(vararg day: Day)
+
+    @Query("select * from day where tanggal=:tanggal")
+    suspend fun selectDay(tanggal:String):List<Day>
+
+    @Query("SELECT totalkalori FROM day WHERE tanggal =:tanggal ORDER BY uuidday DESC LIMIT 1 ")
+            suspend fun selectTotalCal(tanggal:String):Int
+
+    @Query("update day set totalkalori= (:totalkalori+:kaloriMakanan) where uuidday=:uuid")
+    suspend fun updateDaily(totalkalori:Int,kaloriMakanan:Int,uuid:Int)
 //    @Query("select caloriestarget from user")
 //    suspend fun selectTarget():Double
 

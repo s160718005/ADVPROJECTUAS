@@ -78,7 +78,8 @@
                         android:id="@+id/txtName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:text ="@={user.name}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -97,7 +98,8 @@
                         android:id="@+id/txtAge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:text ="@={user.age +``}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -123,9 +125,8 @@
                         android:id="@+id/radioMale"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
-                        android:onClick="@{(view)->radiogenderlistener.onRadioGenderClick(view)}"
-                        android:tag="@string/male"
+                        android:onClick="@{(view)->radiogenderlistener.onRadioGenderClick(view,user)}"
+                        android:tag="Male"
                         android:text="@string/male" />
 
                     <RadioButton
@@ -133,8 +134,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
-                        android:onClick="@{(view)->radiogenderlistener.onRadioGenderClick(view)}"
-                        android:tag="@string/female"
+                        android:onClick="@{(view)->radiogenderlistener.onRadioGenderClick(view,user)}"
+                        android:tag="Female"
                         android:text="@string/female" />
                 </RadioGroup>
 
@@ -156,7 +157,8 @@
                         android:id="@+id/txtWeight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number|numberDecimal" />
+                        android:inputType="number|numberDecimal"
+                        android:text ="@={user.weight +``}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -175,7 +177,8 @@
                         android:id="@+id/txtHeight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number|numberDecimal" />
+                        android:inputType="number|numberDecimal"
+                        android:text ="@={user.height +``}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -202,24 +205,24 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
-                        android:onClick="@{(view)->radiogoallistener.onRadioGoalClick(view)}"
-                        android:tag="@string/maintain"
+                        android:onClick="@{(view)->radiogoallistener.onRadioGoalClick(view,user)}"
+                        android:tag="Maintain Weight"
                         android:text="@string/maintain" />
 
                     <RadioButton
                         android:id="@+id/radioGain"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="@{(view)->radiogoallistener.onRadioGoalClick(view)}"
-                        android:tag="@string/gain"
+                        android:onClick="@{(view)->radiogoallistener.onRadioGoalClick(view,user)}"
+                        android:tag="Gain Weight"
                         android:text="@string/gain" />
 
                     <RadioButton
                         android:id="@+id/radioLoss"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="@{(view)->radiogoallistener.onRadioGoalClick(view)}"
-                        android:tag="@string/loss"
+                        android:onClick="@{(view)->radiogoallistener.onRadioGoalClick(view,user)}"
+                        android:tag="Loss Weight"
                         android:text="@string/loss" />
                 </RadioGroup>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -232,7 +235,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:tag="@{user.name}"
-            android:onClick="@{(view)->startlistener.onStartJourneyClick(view)}"
+            android:onClick="@{(view)->startlistener.onStartJourneyClick(view,user)}"
             android:text="@string/start"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

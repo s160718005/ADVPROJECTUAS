@@ -24,8 +24,8 @@ class CreateUserFragment : Fragment(),StartJourneyClickListener,RadioGenderClick
 
     private lateinit var viewModel: UserViewModel
     private lateinit var dataBinding:FragmentCreateUserBinding
-    var genderUser = "";
-    var goal ="";
+
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -43,6 +43,7 @@ class CreateUserFragment : Fragment(),StartJourneyClickListener,RadioGenderClick
         dataBinding.startlistener=this
         dataBinding.radiogenderlistener=this
         dataBinding.radiogoallistener=this
+        dataBinding.user = User("",0,"",0.0,0.0,"",0,0)
         observeViewModel()
 
     }
@@ -53,14 +54,16 @@ class CreateUserFragment : Fragment(),StartJourneyClickListener,RadioGenderClick
             {
                 //val action = CreateUserFragmentDirections.actionItemReport()
                 findNavController().navigate(R.id.itemFood)
+
             }
 
         })
 
+
     }
 
-    override fun onStartJourneyClick(v: View) {
-        if(txtName.text.toString().isNullOrBlank() || txtAge.text.toString().isNullOrBlank() || txtHeight.text.toString().isNullOrBlank() || txtWeight.text.toString().isNullOrBlank() || genderUser.isNullOrBlank() || goal.isNullOrBlank())
+    override fun onStartJourneyClick(v: View ,obj:User) {
+        if(obj.name.isNullOrBlank() || obj.age.toString().isNullOrBlank() || obj.height.toString().isNullOrBlank() || obj.weight.toString().isNullOrBlank() || obj.gender.isNullOrBlank() || obj.personalgoal.isNullOrBlank())
         {
             Toast.makeText(v.context, "Input text dan radio button tidak boleh kosong", Toast.LENGTH_SHORT).show()
         }
@@ -68,21 +71,21 @@ class CreateUserFragment : Fragment(),StartJourneyClickListener,RadioGenderClick
         {
             //var radioGender = v.findViewById<RadioButton>(radioGroupGender.checkedRadioButtonId)
             //var radioGoal = v.findViewById<RadioButton>(radioGroupGoal.checkedRadioButtonId)
-            var bmr: Int = viewModel.hitungBMR(txtWeight.text.toString().toDouble(), txtHeight.text.toString().toDouble(), txtAge.text.toString().toInt(), genderUser)
-            var target: Int = viewModel.caloriesTarget(bmr, goal)
-            var user = User(txtName.text.toString(), txtAge.text.toString().toInt(), genderUser, txtWeight.text.toString().toDouble(), txtHeight.text.toString().toDouble(), goal, bmr, target)
+            var bmr: Int = viewModel.hitungBMR(obj.height.toString().toDouble(), obj.weight.toString().toDouble(), obj.age.toString().toInt(), obj.gender)
+            var target: Int = viewModel.caloriesTarget(bmr, obj.personalgoal)
+            var user = User(obj.name.toString(), obj.age.toString().toInt(), obj.gender, obj.weight.toString().toDouble(), obj.height.toString().toDouble(), obj.personalgoal, bmr, target)
             viewModel.addUser(user)
             Toast.makeText(v.context, "User Created target = " + target.toString(), Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.itemFood)
         }
     }
 
-    override fun onRadioGenderClick(v: View) {
-        genderUser=v.tag.toString();
+    override fun onRadioGenderClick(v: View,obj: User) {
+        obj.gender=v.tag.toString();
     }
 
-    override fun onRadioGoalClick(v: View) {
-        goal=v.tag.toString();
+    override fun onRadioGoalClick(v: View,obj:User) {
+        obj.personalgoal=v.tag.toString();
     }
 }
 

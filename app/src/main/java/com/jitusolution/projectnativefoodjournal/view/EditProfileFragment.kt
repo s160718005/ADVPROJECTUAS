@@ -55,13 +55,13 @@ class EditProfileFragment : Fragment() , UpdateProfileClickListener{
     }
 
     override fun onUpdateProfileClick(v: View, obj: User) {
-        if(txtName1.text.toString().isNullOrBlank() || txtAge1.text.toString().isNullOrBlank() || txtWeight1.text.toString().isNullOrBlank() || txtHeight1.text.toString().isNullOrBlank())
+        if(obj.name.toString().isNullOrBlank() || obj.age.toString().isNullOrBlank() || obj.weight.toString().isNullOrBlank() || obj.height.toString().isNullOrBlank())
         {
             Toast.makeText(v.context, "Input tidak boleh kosong", Toast.LENGTH_SHORT).show()
         }
         else {
             Log.d("cobacek", obj.toString())
-            var bmr: Int = viewModel.hitungBMR(txtWeight1.text.toString().toDouble(), txtHeight1.text.toString().toDouble(), txtAge1.text.toString().toInt(), obj.gender)
+            var bmr: Int = viewModel.hitungBMR(obj.weight.toString().toDouble(), obj.height.toString().toDouble(), obj.age.toString().toInt(), obj.gender)
             var target: Int = viewModel.caloriesTarget(bmr, obj.personalgoal)
             viewModel.update(obj.name, obj.age, obj.weight, obj.height, obj.uuid, bmr, target)
             Toast.makeText(v.context, "User updated", Toast.LENGTH_SHORT).show()

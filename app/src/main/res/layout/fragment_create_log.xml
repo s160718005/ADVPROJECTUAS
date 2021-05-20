@@ -3,10 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 <data>
+    <variable
+        name="day"
+        type="com.jitusolution.projectnativefoodjournal.model.Day" />
 <variable
     name="cal"
     type="com.jitusolution.projectnativefoodjournal.viewmodel.UserViewModel" />
-
+<variable
+    name="logmeallistener"
+    type="com.jitusolution.projectnativefoodjournal.view.LogThisMealClickListener" />
 </data>
 <FrameLayout
     android:layout_width="match_parent"
@@ -80,7 +85,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtFood"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text ="@={day.namamakanan}"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -98,7 +105,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtTotalKalori"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text ="@={day.kalorimakanan +``}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -109,6 +117,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:text="@string/logthismeal"
+            android:onClick="@{(view)->logmeallistener.onLogThisMealClick(view,day)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout9" />
