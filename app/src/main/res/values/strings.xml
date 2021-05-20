@@ -32,4 +32,6 @@
     <string name="foodlog">Food Log</string>
     <string name="foodjournalreport">Food Journal Report</string>
     <string name="month">Month Year</string>
+    <string name="foodname">Food Name</string>
+    <string name="foodcalorie">Food Calorie</string>
 </resources>

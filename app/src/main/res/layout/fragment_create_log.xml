@@ -9,12 +9,15 @@
     <variable
         name="sisa"
         type="Integer" />
-<variable
-    name="cal"
-    type="com.jitusolution.projectnativefoodjournal.viewmodel.UserViewModel" />
-<variable
-    name="logmeallistener"
-    type="com.jitusolution.projectnativefoodjournal.view.LogThisMealClickListener" />
+    <variable
+        name="cal"
+        type="com.jitusolution.projectnativefoodjournal.viewmodel.UserViewModel" />
+    <variable
+        name="logmeallistener"
+        type="com.jitusolution.projectnativefoodjournal.view.LogThisMealClickListener" />
+    <variable
+        name="util"
+        type="com.jitusolution.projectnativefoodjournal.util.UtilKt" />
 </data>
 <FrameLayout
     android:layout_width="match_parent"
@@ -66,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_marginTop="16dp"
-            android:text="@string/date"
+            android:text="@{util.getDateFormmatted}"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -109,7 +112,8 @@
                 android:id="@+id/txtTotalKalori"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text ="@={day.kalorimakanan +``}"/>
+                android:inputType="number"
+                android:text="@={day.kalorimakanan +``}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

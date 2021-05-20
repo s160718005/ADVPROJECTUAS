@@ -51,16 +51,12 @@ class CreateLogFragment : Fragment(),LogThisMealClickListener {
         viewModel= ViewModelProvider(this).get(UserViewModel::class.java)
         viewModelDay= ViewModelProvider(this).get(DayViewModel::class.java)
         super.onViewCreated(view, savedInstanceState)
-        val date = LocalDateTime.now()
-        var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-        txtDate.text = formatter.format(date)
-dataBinding.logmeallistener = this
+        dataBinding.logmeallistener = this
         dataBinding.day = Day("","",0,0,0,0,"",target)
         viewModel.fetch()
         viewModelDay.fetch()
         observeViewModel()
-        //var cal =
-//        txtCal.text =viewModel.getTarget().toString()
+
     }
     fun observeViewModel() {
         viewModelDay.sisaLD.observe(viewLifecycleOwner, Observer {

@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jitusolution.projectnativefoodjournal.R
 import com.jitusolution.projectnativefoodjournal.databinding.FragmentEditProfileBinding
 import com.jitusolution.projectnativefoodjournal.databinding.FragmentJournalListBinding
@@ -28,6 +29,7 @@ class JournalListFragment : Fragment(),FabLogClickListener {
     private lateinit var viewModelDay: DayViewModel
 
     private lateinit var dataBinding: FragmentJournalListBinding
+    private var foodLogListAdapter:FoodLogListAdapter = FoodLogListAdapter(arrayListOf())
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,7 +50,8 @@ class JournalListFragment : Fragment(),FabLogClickListener {
         viewModelDay.fetch()
 
         dataBinding.fablistener=this
-
+        recFoodLogList.layoutManager=LinearLayoutManager(context)
+        recFoodLogList.adapter=foodLogListAdapter
 //    viewModel.getTarget()
      observeViewModel()
 
@@ -62,17 +65,9 @@ class JournalListFragment : Fragment(),FabLogClickListener {
         })
         viewModel.userLD.observe(viewLifecycleOwner, Observer {
             dataBinding.user=it
-            //txtAgeJournal.text =it.age.toString() +" Years Old"
-            //txtNameJournal.text=it.name.toString()
-            //txtGenderJournal.text=it.gender.toString()
-            //txtTargetCalorie.text=it.target.toString() +" Cal"
-            //progressBar.max = it.target
-            //progressBar.progress= it.target
-
-//            val date = LocalDateTime.now()
-//            var formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-//            txtDateJournal.text = formatter.format(date)
-
+        })
+        viewModelDay.dayLD.observe(viewLifecycleOwner, Observer {
+            foodLogListAdapter.updateFoodLogList(it)
         })
 
     }
