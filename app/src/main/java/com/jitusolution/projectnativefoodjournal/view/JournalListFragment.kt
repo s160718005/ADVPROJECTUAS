@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jitusolution.projectnativefoodjournal.R
 import com.jitusolution.projectnativefoodjournal.databinding.FragmentEditProfileBinding
 import com.jitusolution.projectnativefoodjournal.databinding.FragmentJournalListBinding
+import com.jitusolution.projectnativefoodjournal.util.getDaysInMonth
 import com.jitusolution.projectnativefoodjournal.viewmodel.DayViewModel
 import com.jitusolution.projectnativefoodjournal.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -37,6 +38,7 @@ class JournalListFragment : Fragment(),FabLogClickListener {
         // Inflate the layout for this fragment
 
         //return inflater.inflate(R.layout.fragment_journal_list, container, false)
+        //Log.d("cobacekjumlah", getDaysInMonth().toString())
        dataBinding= DataBindingUtil.inflate<FragmentJournalListBinding>(inflater,R.layout.fragment_journal_list,container,false)
         return dataBinding.root
     }

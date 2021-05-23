@@ -24,3 +24,9 @@ fun getDateFormmatted2():String{
     var formatter = SimpleDateFormat("MMM yyyy")
     return formatter.format(Date())
 }
+fun getDaysInMonth():Int{
+    var calendar = Calendar.getInstance()
+    var day = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+    return day
+}
+
