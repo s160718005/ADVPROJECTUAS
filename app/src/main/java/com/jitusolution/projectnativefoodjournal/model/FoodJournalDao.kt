@@ -36,6 +36,9 @@ interface FoodJournalDao {
 
     @Query("update day set totalkalori= (:totalkalori+:kaloriMakanan) where uuidday=:uuid")
     suspend fun updateDaily(totalkalori:Int,kaloriMakanan:Int,uuid:Int)
+
+    @Query("select * from day where uuidday in (select MAX(uuidday) from day group by tanggal)")
+    suspend fun getReport(tanggal: String):List<Day>
 //    @Query("select caloriestarget from user")
 //    suspend fun selectTarget():Double
 
