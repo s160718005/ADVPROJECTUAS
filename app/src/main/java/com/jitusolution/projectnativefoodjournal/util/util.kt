@@ -17,7 +17,7 @@ fun buildDB(context: Context): FoodJournalDatabase {
 }
 
 fun getDateFormmatted():String{
-    var formatter = SimpleDateFormat("dd MMM yyyy")
+    var formatter = SimpleDateFormat("d MMM yyyy")
     return formatter.format(Date())
 }
 fun getDateFormmatted2():String{

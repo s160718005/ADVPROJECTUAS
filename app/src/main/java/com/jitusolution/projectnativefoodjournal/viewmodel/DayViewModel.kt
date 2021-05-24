@@ -1,16 +1,20 @@
 package com.jitusolution.projectnativefoodjournal.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.jitusolution.projectnativefoodjournal.model.Day
 import com.jitusolution.projectnativefoodjournal.model.User
 import com.jitusolution.projectnativefoodjournal.util.buildDB
 import com.jitusolution.projectnativefoodjournal.util.getDateFormmatted
+import com.jitusolution.projectnativefoodjournal.util.getDateFormmatted2
+import com.jitusolution.projectnativefoodjournal.util.getDaysInMonth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import kotlin.coroutines.CoroutineContext
 
 class DayViewModel (application: Application): AndroidViewModel(application), CoroutineScope {
@@ -18,6 +22,7 @@ class DayViewModel (application: Application): AndroidViewModel(application), Co
     val userLD = MutableLiveData<User>()
 val totalCalLD = MutableLiveData<Int>()
     val dayLD = MutableLiveData<List<Day>>()
+    val reportLD = MutableLiveData<List<Day>>()
     var sisaLD = MutableLiveData<Int>()
     val statusLD = MutableLiveData<String>()
     fun fetch(){
@@ -50,6 +55,42 @@ val totalCalLD = MutableLiveData<Int>()
             {
                 statusLD.value =db.foodjournalDao().selectStatus(getDateFormmatted())
             }
+
+
+
+        }
+    }
+    fun getReport()
+    {
+        launch{
+            val db = buildDB(getApplication())
+            //reportLD.value=db.foodjournalDao().getReport(getDateFormmatted2())
+            val tanggal = db.foodjournalDao().getTanggal('%'+getDateFormmatted2()+'%')
+            var listTanggal = arrayListOf<Int>()
+            var listReportDay = arrayListOf<Day>()
+            Log.d("cek",tanggal.toString())
+            for(t in tanggal)
+            {
+                var convert = SimpleDateFormat("d").parse(t.tanggal)
+                listTanggal.add(SimpleDateFormat("d").format(convert).toInt())
+            }
+            Log.d("ceklist",listTanggal.toString())
+            //listTanggal.add(20)
+            for(i in 1 .. getDaysInMonth())
+            {
+                if(listTanggal.contains(i))
+                {
+                    Log.d("masuk","masuk")
+                    var totalKalori= db.foodjournalDao().getTotalKalori(i.toString()+' '+ getDateFormmatted2())
+                    var status=db.foodjournalDao().selectStatus(i.toString()+' '+ getDateFormmatted2())
+                    listReportDay.add(Day(i.toString()+' '+ getDateFormmatted2(),"",0,totalKalori,0,0,status,0))
+                }
+                else
+                {
+                    listReportDay.add(Day(i.toString()+' '+ getDateFormmatted2(),"",0,0,0,0,"LOW",0))
+                }
+            }
+            reportLD.value = listReportDay
 
 
 
