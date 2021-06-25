@@ -45,7 +45,10 @@ data class Day(
         @ColumnInfo(name="status")
         var status: String,
         @ColumnInfo(name="sisacalori")
-        var sisa:Int
+        var sisa:Int,
+        @ColumnInfo(name="jumlahmakanan")
+        var jumlahmakanan:Int
+
 
         ){
     @PrimaryKey(autoGenerate = true)

@@ -52,7 +52,7 @@ class CreateLogFragment : Fragment(),LogThisMealClickListener {
         viewModelDay= ViewModelProvider(this).get(DayViewModel::class.java)
         super.onViewCreated(view, savedInstanceState)
         dataBinding.logmeallistener = this
-        dataBinding.day = Day("","",0,0,0,0,"",target)
+        dataBinding.day = Day("","",0,0,0,0,"",target,0)
         viewModel.fetch()
         viewModelDay.fetch()
         observeViewModel()
@@ -78,10 +78,10 @@ class CreateLogFragment : Fragment(),LogThisMealClickListener {
         }
         else
         {
-            var day = Day(getDateFormmatted(),obj.namamakanan,obj.kalorimakanan.toString().toInt(),0,bmr,target,"",0)
+            var day = Day(getDateFormmatted(),obj.namamakanan,obj.kalorimakanan.toString().toInt(),0,bmr,target,"",0,0)
 
             viewModelDay.addDay(day)
-            Toast.makeText(v.context, "Makanan sudah tersimpan , Total kalori hari ini =" + totalCal.toString(), Toast.LENGTH_SHORT).show()
+            Toast.makeText(v.context, "Makanan sudah tersimpan , Total kalori hari ini =", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.itemFood)
         }
     }

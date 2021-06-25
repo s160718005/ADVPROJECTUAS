@@ -83,11 +83,12 @@ val totalCalLD = MutableLiveData<Int>()
                     Log.d("masuk","masuk")
                     var totalKalori= db.foodjournalDao().getTotalKalori(i.toString()+' '+ getDateFormmatted2())
                     var status=db.foodjournalDao().selectStatus(i.toString()+' '+ getDateFormmatted2())
-                    listReportDay.add(Day(i.toString()+' '+ getDateFormmatted2(),"",0,totalKalori,0,0,status,0))
+                    var jumlahmakanan = db.foodjournalDao().selectJumlahMakanan(i.toString()+' '+ getDateFormmatted2())
+                    listReportDay.add(Day(i.toString()+' '+ getDateFormmatted2(),"",0,totalKalori,0,0,status,0,jumlahmakanan))
                 }
                 else
                 {
-                    listReportDay.add(Day(i.toString()+' '+ getDateFormmatted2(),"",0,0,0,0,"LOW",0))
+                    listReportDay.add(Day(i.toString()+' '+ getDateFormmatted2(),"",0,0,0,0,"LOW",0,0))
                 }
             }
             reportLD.value = listReportDay
@@ -106,17 +107,21 @@ val totalCalLD = MutableLiveData<Int>()
             //TodoDatabase::class.java, "tododb").build()
             val db = buildDB(getApplication())
             var total:Int = 0
+            var jumlahMakanan:Int = 0
 
             if (db.foodjournalDao().selectTotalCal(getDateFormmatted())==null)
             {
                 total = 0;
+                jumlahMakanan = 0
 
             }
             else{
                 total = db.foodjournalDao().selectTotalCal(getDateFormmatted())
+                jumlahMakanan = db.foodjournalDao().selectJumlahMakanan((getDateFormmatted()))
 
             }
             day.totalkalori = total+day.kalorimakanan
+            day.jumlahmakanan = jumlahMakanan + 1
             var status = "low"
 
             if(day.totalkalori<=(0.5*day.target))
