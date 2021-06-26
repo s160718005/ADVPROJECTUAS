@@ -1,6 +1,7 @@
 package com.jitusolution.projectnativefoodjournal.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -69,9 +70,10 @@ class CreateUserFragment : Fragment(),StartJourneyClickListener,RadioGenderClick
         }
         else
         {
+            Log.d("cobacekobjuser", obj.toString())
             //var radioGender = v.findViewById<RadioButton>(radioGroupGender.checkedRadioButtonId)
             //var radioGoal = v.findViewById<RadioButton>(radioGroupGoal.checkedRadioButtonId)
-            var bmr: Int = viewModel.hitungBMR(obj.height.toString().toDouble(), obj.weight.toString().toDouble(), obj.age.toString().toInt(), obj.gender)
+            var bmr: Int = viewModel.hitungBMR(obj.weight.toString().toDouble(), obj.height.toString().toDouble(), obj.age.toString().toInt(), obj.gender)
             var target: Int = viewModel.caloriesTarget(bmr, obj.personalgoal)
             var user = User(obj.name.toString(), obj.age.toString().toInt(), obj.gender, obj.weight.toString().toDouble(), obj.height.toString().toDouble(), obj.personalgoal, bmr, target)
             viewModel.addUser(user)

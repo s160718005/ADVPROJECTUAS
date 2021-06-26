@@ -16,6 +16,7 @@ class UserViewModel (application: Application): AndroidViewModel(application), C
     val userLD = MutableLiveData<User>()
     val targetLD = MutableLiveData<Double>()
     val jumlahLD = MutableLiveData<Int>()
+    val personalLD=MutableLiveData<String>()
     fun fetch(){
         launch{
             val db = buildDB(getApplication())

@@ -81,7 +81,7 @@ class CreateLogFragment : Fragment(),LogThisMealClickListener {
             var day = Day(getDateFormmatted(),obj.namamakanan,obj.kalorimakanan.toString().toInt(),0,bmr,target,"",0,0)
 
             viewModelDay.addDay(day)
-            Toast.makeText(v.context, "Makanan sudah tersimpan , Total kalori hari ini =", Toast.LENGTH_SHORT).show()
+            Toast.makeText(v.context, "Makanan sudah tersimpan , Tetap semangat ya!", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.itemFood)
         }
     }
